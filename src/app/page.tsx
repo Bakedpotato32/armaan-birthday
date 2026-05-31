@@ -4,7 +4,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { 
   Trophy, ChevronRight, Play, RefreshCw, Heart, Sparkles, 
-  BookOpen, Gamepad2, ImageIcon
+  BookOpen, Gamepad2
 } from 'lucide-react';
 
 interface ContentCard {
@@ -20,17 +20,16 @@ export default function BirthdayWebsite() {
   const [phase, setPhase] = useState<number>(1);
 
   return (
-    // Explicit flex container centered horizontally and vertically to kill top-anchoring shifts[span_3](start_span)[span_3](end_span)
     <main className="relative w-full h-screen overflow-hidden bg-[#FFF0F5] flex items-center justify-center select-none z-10" style={{ color: '#0f172a' }}>
       
-      {/* Premium Luxury Opaque Backdrop Layer[span_4](start_span)[span_4](end_span) */}
+      {/* Premium Luxury Opaque Backdrop Layer */}
       <div className="absolute inset-0 pointer-events-none z-0">
         <div className="absolute inset-0 bg-gradient-to-tr from-[#FFF0F5] via-[#FFE4E1] to-white" />
         <div className="absolute top-[-10%] left-[-10%] w-[80vw] h-[80vw] rounded-full bg-rose-300/50 blur-[110px] animate-pulse" style={{ animationDuration: '7s' }} />
         <div className="absolute bottom-[-10%] right-[-10%] w-[90vw] h-[90vw] rounded-full bg-red-200/40 blur-[130px] animate-pulse" style={{ animationDuration: '10s' }} />
       </div>
 
-      {/* Internal Animation Keyframes[span_5](start_span)[span_5](end_span) */}
+      {/* Internal Animation Keyframes */}
       <style>{`
         .nova-pulse { animation: nova-pulse 2.5s ease-in-out infinite; transform-origin: center; }
         .nova-twinkle { animation: nova-twinkle 2s ease-in-out infinite; transform-origin: center; }
@@ -40,7 +39,7 @@ export default function BirthdayWebsite() {
         .hide-scrollbar { -ms-overflow-style: none !important; scrollbar-width: none !important; }
       `}</style>
 
-      {/* Main Centered Orchestration Shell[span_6](start_span)[span_6](end_span) */}
+      {/* Main Centered Orchestration Shell */}
       <div className="relative w-full max-w-sm h-full flex flex-col items-center justify-center px-4 z-10">
         <AnimatePresence mode="wait">
           {phase === 1 && <Phase1Intro onComplete={() => setPhase(2)} />}
@@ -75,7 +74,6 @@ function Phase1Intro({ onComplete }: { onComplete: () => void }) {
   }, [currentIdx, onComplete, phrases.length]);
 
   return (
-    // Uses absolute alignment inside the orchestrator to prevent container collapse height drops[span_7](start_span)[span_7](end_span)
     <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-4">
       <AnimatePresence mode="wait">
         {phrases.map((phrase, idx) => {
@@ -93,7 +91,6 @@ function Phase1Intro({ onComplete }: { onComplete: () => void }) {
                 textShadow: '0 4px 14px rgba(225, 29, 72, 0.2)'
               }}
             >
-              {/* Breaks down line 1 into stacked centered blocks while fallback rendering other indices */}
               {idx === 0 ? (
                 <span className="flex flex-col items-center justify-center gap-2">
                   <span>Happy Birthday</span>
@@ -112,7 +109,6 @@ function Phase1Intro({ onComplete }: { onComplete: () => void }) {
 
 // --- PHASE 2: CENTERED IMAGE CAROUSEL LOADED FROM PUBLIC ---
 function Phase2Gallery({ onComplete }: { onComplete: () => void }) {
-  // Corrected file directory targets matching your public folder file storage layout[span_8](start_span)[span_8](end_span)
   const cards: ContentCard[] = [
     { id: 1, title: "Hero Entry", caption: "Bhai look toh check karo, bilkul hero entry! 🔥😎", gradient: "linear-gradient(135deg, #f43f5e, #be123c)", watermark: "🔥", imageSrc: "/photo1.jpg" },
     { id: 2, title: "Aesthetic King", caption: "Aesthetic ka king, candid toh next level hai tera! ✨📸", gradient: "linear-gradient(135deg, #06b6d4, #0284c7)", watermark: "✨", imageSrc: "/photo2.jpg" },
@@ -163,7 +159,6 @@ function Phase2Gallery({ onComplete }: { onComplete: () => void }) {
                 style={{ background: '#ffffff', borderRadius: '32px', border: '2px solid rgba(255,255,255,0.9)', padding: '18px', position: 'absolute', width: '100%', height: '100%', boxShadow: '0 15px 35px rgba(225,29,72,0.05)', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', boxSizing: 'border-box' }}
                 className="cursor-grab active:cursor-grabbing"
               >
-                {/* Clean Next.js Root Public Path Image Loader with native fallback support[span_9](start_span)[span_9](end_span) */}
                 <div style={{ borderRadius: '22px', height: '72%', position: 'relative', overflow: 'hidden', display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#f8fafc' }}>
                   <img 
                     src={card.imageSrc} 
@@ -198,7 +193,7 @@ function Phase2Gallery({ onComplete }: { onComplete: () => void }) {
   );
 }
 
-// --- PHASE 3: SWIPABLE NARRATIVE STORY CARD CAROUSEL[span_10](start_span)[span_10](end_span) ---
+// --- PHASE 3: SWIPABLE NARRATIVE STORY CARD CAROUSEL ---
 function Phase3Story({ onComplete }: { onComplete: () => void }) {
   const stories: ContentCard[] = [
     { id: 1, title: "Step 1", caption: "Waise... yaad hai 9th standard ka wo din? 🤔", gradient: "linear-gradient(135deg, #be123c, #9f1239)", watermark: "🏫" },
@@ -249,7 +244,7 @@ function Phase3Story({ onComplete }: { onComplete: () => void }) {
                 onDragEnd={(_, info) => {
                   if (info.offset.x < -40) handleNextStory();
                 }}
-                style={{ background: '#ffffff', borderRadius: '32px', border: '2px solid rgba(255,255,255,0.9)', padding: '24px', position: 'absolute', width: '100%', height: '100%', boxShadow: '0 15px 35px rgba(0,0,0,0.04)', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', boxSizing: 'border-box' }}
+                style={{ background: '#ffffff', borderRadius: '32px', border: '2px solid rgba(255,255,255,0.9)', padding: '24px', position: 'absolute', width: '100%', height: '100%', boxShadow: '0 15px 35px rgba(0,0,0,0.03)', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', boxSizing: 'border-box' }}
                 className="cursor-grab active:cursor-grabbing"
               >
                 <div style={{ background: story.gradient, borderRadius: '22px', height: '42%', position: 'relative', overflow: 'hidden', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
@@ -280,7 +275,7 @@ function Phase3Story({ onComplete }: { onComplete: () => void }) {
   );
 }
 
-// --- PHASE 4: PERFECTLY CENTERED PLAY OVERLAY[span_11](start_span)[span_11](end_span) ---
+// --- PHASE 4: PERFECTLY CENTERED PLAY OVERLAY ---
 function Phase4Transition({ onComplete }: { onComplete: () => void }) {
   return (
     <div className="w-full flex flex-col items-center justify-center p-2">
@@ -312,7 +307,7 @@ function Phase4Transition({ onComplete }: { onComplete: () => void }) {
   );
 }
 
-// --- PHASE 5: EXPANDED AND PERFECTLY CENTERED MINI-GAME[span_12](start_span)[span_12](end_span) ---
+// --- PHASE 5: EXPANDED AND PERFECTLY CENTERED MINI-GAME ---
 function Phase5Game() {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const [score, setScore] = useState<number>(0);
@@ -496,7 +491,7 @@ function Phase5Game() {
     >
       <div style={{ display: 'flex', width: '100%', alignItems: 'center', justifyContent: 'space-between', background: '#ffffff', borderRadius: '24px', padding: '12px 20px', border: '1px solid #e2e8f0', boxShadow: '0 6px 20px rgba(0,0,0,0.02)', boxSizing: 'border-box' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-          <div style={{ width: '34px', height: '34px', borderRadius: '10px', background: 'rgba(245,158,11,0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+          <div style={{ width: '34px', height: '34px', borderRadius: '10px', background: 'rgba(245,158,11,0.1)', display: 'flex', alignItems: 'center', justifyItems: 'center', justifyContent: 'center' }}>
             <Trophy size={16} color="#f59e0b" fill="#f59e0b" className="nova-pulse" />
           </div>
           <span style={{ fontSize: '14px', fontWeight: 900, color: '#334155', textTransform: 'uppercase', letterSpacing: '0.5px' }}>Score Board</span>
@@ -512,8 +507,9 @@ function Phase5Game() {
           className="w-full h-full block touch-none"
         />
 
+        {/* Clean, error-free win modal container style layout */}
         {score >= 15 && gameState === "playing" && (
-          <div style={{ position: 'absolute', inset: 0, background: 'rgba(255, 255, 255, 0.96)', display: 'flex', flexDirection: 'column', items: 'center', justifyContent: 'center', padding: '24px', textAlign: 'center', zIndex: 40 }}>
+          <div style={{ position: 'absolute', inset: 0, background: 'rgba(255, 255, 255, 0.96)', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '24px', textAlign: 'center', zIndex: 40 }}>
             <div style={{ width: '56px', height: '56px', margin: '0 auto 16px', background: 'rgba(6,182,212,0.1)', borderRadius: '20px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
               <Sparkles size={28} color="#06b6d4" className="nova-twinkle" />
             </div>
